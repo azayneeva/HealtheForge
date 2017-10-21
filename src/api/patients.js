@@ -30,7 +30,8 @@ const getPatient = (patientId)=>{
         firstName: patient.firstName,
         lastName: patient.lastName,
         dateOfBirth: patient.dateOfBirth.slice(0, 10),
-        patiendId: patient.identifiers[0].value
+        patiendId: patient.identifiers[0].value,
+        gender: patient.gender
       }
     })
     .catch((err)=>{

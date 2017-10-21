@@ -58,74 +58,89 @@ export class AllPatients extends Component {
         <h2>
           Patients Data
         </h2>
+        <div className="row justify-content-md-center" style={{
+          marginBottom: '20px'
+        }}>
+          <div className="col-8 col-md-7 col-lg-6">
+            <div className="input-group">
+              <input onChange={this.search.bind(this)} type="text" className="form-control" placeholder="Search for..."/>
+            </div>
+          </div>
 
-        <input onChange={this.search.bind(this)} type="text" placeholder="Search..."/>
+          <div className="col-4 col-md-3 col-lg-2">
+            <select className= "custom-select form-control" onChange={this.sort.bind(this)}>
+              <option defaultValue value="">Order by</option>
+              <option value="firstName ASC">
+                firstName ASC
+              </option>
+              <option value="firstName DESC">
+                firstName DESC
+              </option>
+              <option value="lastName ASC">
+                lastName ASC
+              </option>
+              <option value="lastName DESC">
+                lastName DESC
+              </option>
+              <option value="dateOfBirth ASC">
+                dateOfBirth ASC
+              </option>
+              <option value="dateOfBirth DESC">
+                dateOfBirth DESC
+              </option>
 
-        <select onChange={this.sort.bind(this)}>
-          <option defaultValue value="">Order by</option>
-          <option value="firstName ASC">
-            firstName ASC
-          </option>
-          <option value="firstName DESC">
-            firstName DESC
-          </option>
-          <option value="lastName ASC">
-            lastName ASC
-          </option>
-          <option value="lastName DESC">
-            lastName DESC
-          </option>
-          <option value="dateOfBirth ASC">
-            dateOfBirth ASC
-          </option>
-          <option value="dateOfBirth DESC">
-            dateOfBirth DESC
-          </option>
+            </select>
+          </div>
+        </div>
 
-        </select>
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-md-10 col-lg-8">
+            <table className="table">
+              <thead className="thead-light">
+                <tr>
+                  <th scope="col">
+                    Last Name
+                  </th>
+                  <th scope="col">
+                    First Name
+                  </th>
+                  <th scope="col">
+                    Date of Birth
+                  </th>
+                </tr>
+              </thead>
 
-        <table>
+              <tbody>
+                {this.state.patients.map(patient => (
+                  <tr key={patient.lastName}>
+                    <td>
+                      <Link to={`/patient/${patient.patiendId}`}>{patient.lastName}</Link>
+                    </td>
+                    <td>
+                      <Link to={`/patient/${patient.patiendId}`}>{patient.firstName}</Link>
+                    </td>
+                    <td>
+                      <Link to={`/patient/${patient.patiendId}`}>{patient.dateOfBirth}</Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
 
-          <thead>
-            <tr>
-              <th>
-                Last Name
-              </th>
-              <th>
-                First Name
-              </th>
-              <th>
-                Date of Birth
-              </th>
-            </tr>
-          </thead>
+            </table>
+          </div>
+        </div>
 
-          <tbody>
-            {this.state.patients.map(patient => (
-              <tr key={patient.lastName}>
-                <td>
-                  <Link to={`/patient/${patient.patiendId}`}>{patient.lastName}</Link>
-                </td>
-                <td>
-                  <Link to={`/patient/${patient.patiendId}`}>{patient.firstName}</Link>
-                </td>
-                <td>
-                  <Link to={`/patient/${patient.patiendId}`}>{patient.dateOfBirth}</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-
-        </table>
-
-        <p>
-          {pageNumber > 0 && <a href="#" onClick={this.changePage.bind(this, this.state.pageNumber - 1)}>&lt;&lt;Previous</a>}
-          {pageNumber + 1}
-          of {this.state.totalPages}
-          {pageNumber < this.state.totalPages - 1 && <a href="#" onClick={this.changePage.bind(this, this.state.pageNumber + 1)}>
-            next&gt;&gt;
-          </a>}
-        </p>
+        <div className="row justify-content-md-center">
+          <span className="col-3">
+            {pageNumber > 0 && <a className="btn btn-light" href="#" onClick={this.changePage.bind(this, this.state.pageNumber - 1)}>Previous</a>}
+          </span>
+          <h5 className="col-6 col-md-3 col-lg-2">
+              {pageNumber + 1}  of {this.state.totalPages}
+          </h5>
+          <span className="col-3">
+            {pageNumber < this.state.totalPages - 1 && <a className="btn btn-light" href="#" onClick={this.changePage.bind(this, this.state.pageNumber + 1)}> Next</a>}
+          </span>
+        </div>
       </div>
     )
   }

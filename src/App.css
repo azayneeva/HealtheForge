@@ -1,21 +1,3 @@
 .App {
   text-align: center;
 }
-
-table, td, th {
-  border: 1px solid black;
-}
-
-table {
-  margin: auto;
-  border-collapse: collapse;
-}
-
-th {
-  padding: 5%;
-  background-color: lightgrey;
-}
-
-td {
-  padding: 2%;
-}

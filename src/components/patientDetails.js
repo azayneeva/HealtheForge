@@ -38,7 +38,7 @@ export class patientDetails extends Component {
           <dt>Date of Birth:</dt>
           <dd>{this.state.patient.dateOfBirth}</dd>
         </dl>
-        <Link to="/"><button>Back to the main page</button></Link>
+        <Link to="/"><button className="btn btn-light">Back to the main page</button></Link>
       </div>
     )
   }
