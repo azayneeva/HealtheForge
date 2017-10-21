@@ -35,9 +35,7 @@ export class AllPatients extends Component {
     }, this.updateResults)
   }
 
-  changePage(page, e) {
-    e.preventDefault()
-
+  changePage(page) {
     this.setState({
       pageNumber: page
     }, this.updateResults)
@@ -132,13 +130,13 @@ export class AllPatients extends Component {
 
         <div className="row justify-content-md-center">
           <span className="col-3">
-            {pageNumber > 0 && <a className="btn btn-light" href="#" onClick={this.changePage.bind(this, this.state.pageNumber - 1)}>Previous</a>}
+            {pageNumber > 0 && <button className="btn btn-light" onClick={this.changePage.bind(this, this.state.pageNumber - 1)}>Previous</button>}
           </span>
           <h5 className="col-6 col-md-3 col-lg-2">
               {pageNumber + 1}  of {this.state.totalPages}
           </h5>
           <span className="col-3">
-            {pageNumber < this.state.totalPages - 1 && <a className="btn btn-light" href="#" onClick={this.changePage.bind(this, this.state.pageNumber + 1)}> Next</a>}
+            {pageNumber < this.state.totalPages - 1 && <button className="btn btn-light" onClick={this.changePage.bind(this, this.state.pageNumber + 1)}> Next</button>}
           </span>
         </div>
       </div>

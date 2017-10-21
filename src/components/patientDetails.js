@@ -21,7 +21,6 @@ export class patientDetails extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <h2> Details of {this.state.patient.firstName} {this.state.patient.lastName} </h2>

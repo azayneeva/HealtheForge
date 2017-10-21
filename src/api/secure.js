@@ -1,5 +1,4 @@
 /*global Keycloak*/
-const TOKEN_API = 'https://auth.healthforge.io/auth/realms/interview/protocol/openid-connect/token'
 
 var keycloak = Keycloak({
     url: 'https://auth.healthforge.io/auth',
