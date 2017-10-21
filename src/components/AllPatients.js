@@ -28,7 +28,6 @@ export class AllPatients extends Component {
   }
 
   search(e) {
-    const page = this.state.pageNumber
     const query = e.target.value
     this.setState({
       query: query,
@@ -63,7 +62,7 @@ export class AllPatients extends Component {
         <input onChange={this.search.bind(this)} type="text" placeholder="Search..."/>
 
         <select onChange={this.sort.bind(this)}>
-          <option selected="" value="">Order by</option>
+          <option defaultValue value="">Order by</option>
           <option value="firstName ASC">
             firstName ASC
           </option>

@@ -1,7 +1,9 @@
-const API = 'https://api.interview.healthforge.io:443/api'
+import { fetchSecure } from './secure.js'
+
+const API = 'https://api.interview.healthforge.io:443/api/secure'
 
 const getPatients = (pageNumber=0, query='', sortBy='')=>{
-  return fetch(`${API}/patient?page=${pageNumber}&size=10&lastName=${query}&sort=${sortBy}`)
+  return fetchSecure(`${API}/patient?page=${pageNumber}&size=10&lastName=${query}&sort=${sortBy}`)
     .then((res) => res.json())
     .then((res) => {
       const mappedPatients = res.content.map(patient => ({
@@ -15,10 +17,13 @@ const getPatients = (pageNumber=0, query='', sortBy='')=>{
         totalPages: res.totalPages
       }
     })
+    .catch((err)=>{
+      console.log(err)
+    })
 }
 
 const getPatient = (patientId)=>{
-  return fetch(`https://api.interview.healthforge.io:443/api/patient/${patientId}`)
+  return fetchSecure(`${API}/patient/${patientId}`)
     .then((res) => res.json())
     .then((patient) => {
       return {
@@ -28,9 +33,12 @@ const getPatient = (patientId)=>{
         patiendId: patient.identifiers[0].value
       }
     })
+    .catch((err)=>{
+      console.log(err)
+    })
 }
 
-module.exports = {
+export {
   getPatients,
   getPatient
 }
